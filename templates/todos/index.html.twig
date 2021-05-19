@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+{% block title %} Todo {% endblock %}
+{% block body %}
+{% if todos %}
+    <div class="container">
+        <table id="todos" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Todos</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for todo in todos %}
+                    <tr>
+                        <td>{{todo.title}}</td>
+                        <td>
+                            <a href="/todo/{{todo.id}}" class="btn btn-dark">Show</a>
+                            <a href="/todo/edit/{{todo.id}}" class="btn btn-light">Edit</a>
+                            <a href="#" class="btn btn-danger delete-todo" data-id="{{todo.id}}">Delete</a>
+                            
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% else %}
+<p>no Todos to display </p>
+{% endif %}
+{% endblock %}
+
+{% block javascripts %}
+<script src="/js/main.js"></script>
+{% endblock %}
